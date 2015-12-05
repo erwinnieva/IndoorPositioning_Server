@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="jumbotron">
+			<div class="container text-center">
+				<p><%= subject %></p>
+				<h1><%= title %></h1>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<h2>Developer Profile</h2>
+			</div>
+
+			<section data-ng-controller="devProfileCtrl">
+				<div class = "row">
+					<div ng-repeat = "profile in devProfile">
+						<div class="list-group">
+							<a href="#" class="list-group-item">
+								<h4 class="list-group-item-heading">{{profile.Name}}</h4>
+								<p class="list-group-item-text">
+									<p>{{profile.Position}}</p>
+									<p><b>Responsibilities:</b><br>{{profile.Responsibility}}</p>
+								</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<script type="text/javascript" src="/lib/angular/angular.js"></script>
+		<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+		<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+		<script type="text/javascript" src="/dev_profile/dev_profile.client.module.js"></script>
+		<script type="text/javascript" src="/dev_profile/controller/dev_profile.client.controller.js"></script>
+		<script type="text/javascript" src="/application.js"></script>
+	</body>
+</html>

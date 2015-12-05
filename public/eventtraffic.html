@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Indoor Positioning - Event Traffic</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="/javascript/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.ajaxSetup({
+					cache: false
+				});
+				setInterval(function() {
+					$.getJSON("https://rocky-falls-3529.herokuapp.com/location", function(data) {
+						for(var i = 0; i < data.length; i++) {
+							$('.fmap').append("<img src='/images/bluedot.png' alt='person' height='10' width='10' style='position:absolute;top:" + data[i].LocY + "px;left:" + data[i].LocX + "px'>");
+						}
+					});
+				}, 1000);
+			});
+		</script>
+	</head>
+	<body>
+		<main>
+			<div class="container">
+				<div class="row">
+					<img src="/images/NPUFloorPlan.png" alt="floormap" style="position:absolute;top:6px;left:8px;">
+				</div>
+			</div>
+			<div class="fmap"></div>
+		</main>
+	</body>
+</html>

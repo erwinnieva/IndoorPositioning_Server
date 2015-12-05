@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Indoor Positioning - My Location</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="/javascript/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var parameter = location.search.substring(1).split("&");
+				var personId = parameter[0].split("=");
+
+				$.getJSON("https://rocky-falls-3529.herokuapp.com/locationByPersonId/" + personId[1], function(data) {
+					console.log('LocX: ' + data.LocX + ', LocY: ' + data.LocY);
+					$('.fmap').append("<img src='/images/bluedot.png' alt='person' height='10' width='10' style='position:absolute;top:" + data.LocY + "px;left:" + data.LocX + "px'>");
+					$('.fmap').append("<span style='position:absolute;top:" + data.LocY + "px;left:" + data.LocX + "px'>&nbsp;<b>" + data._person.Firstname + " " + data._person.Lastname + "</b></span>");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<main>
+			<div class="container">
+				<div class="row">
+					<img src="/images/NPUFloorPlan.png" alt="floormap" style="position:absolute;top:6px;left:8px;">
+				</div>
+			</div>
+			<div class="fmap"></div>
+		</main>
+	</body>
+</html>
